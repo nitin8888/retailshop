@@ -28,13 +28,6 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(String name, String addressNumber, String postCode, Coordinates coordinates) {
-        this.name = name;
-        this.addressNumber = addressNumber;
-        this.postCode = postCode;
-        this.coordinates = coordinates;
-    }
-
     public String getName() {
         return name;
     }

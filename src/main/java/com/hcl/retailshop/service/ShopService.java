@@ -4,14 +4,11 @@ import com.hcl.retailshop.model.Coordinates;
 import com.hcl.retailshop.model.Shop;
 
 /**
+ * The shop service to add shop and get closest shop.
+ *
  * Created by Nitin Shreyakar.
  */
 public interface ShopService {
-
-    /**
-     * Add shop to the collection of shops.
-     */
-    void addShop(Shop shop);
 
     /**
      * Gets the closest shop to the passed coordinates.
@@ -19,4 +16,11 @@ public interface ShopService {
      * @return the closest shop
      */
     Shop getClosestShop(Coordinates coordinates);
+
+    /**
+     * Process shop by parsing the json file.
+     * @param shopJson the shop json file
+     * @throws Exception if any error occurs
+     */
+    void processShop(String shopJson) throws Exception;
 }
