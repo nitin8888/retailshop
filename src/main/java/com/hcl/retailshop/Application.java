@@ -1,4 +1,4 @@
-package com.hcl.retailshop.app;
+package com.hcl.retailshop;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;

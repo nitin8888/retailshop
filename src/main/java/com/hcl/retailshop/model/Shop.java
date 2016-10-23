@@ -8,22 +8,25 @@ public class Shop {
     /**
      * The shop name.
      */
-    private final String name;
+    private String name;
 
     /**
      * The address number.
      */
-    private final String addressNumber;
+    private String addressNumber;
 
     /**
      * The post code.
      */
-    private final String postCode;
+    private String postCode;
 
     /**
      * The geocode Coordinates longitude & latitude.
      */
-    private final Coordinates coordinates;
+    private Coordinates coordinates;
+
+    public Shop() {
+    }
 
     public Shop(String name, String addressNumber, String postCode, Coordinates coordinates) {
         this.name = name;
@@ -46,6 +49,22 @@ public class Shop {
 
     public Coordinates getCoordinates() {
         return coordinates;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setAddressNumber(String addressNumber) {
+        this.addressNumber = addressNumber;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public void setCoordinates(Coordinates coordinates) {
+        this.coordinates = coordinates;
     }
 
     @Override
