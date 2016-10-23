@@ -12,6 +12,8 @@
 # Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm
 
 *.iml
+*.ipr
+*.iws
 
 ## Directory-based project format:
 .idea/

@@ -32,5 +32,6 @@ dependencies {
     // tag::tests[]
     testCompile("org.springframework.boot:spring-boot-starter-test")
     // end::tests[]
+    compile("com.google.maps:google-maps-services:0.1.16")
 }
 
