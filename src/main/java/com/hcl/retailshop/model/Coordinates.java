@@ -17,9 +17,9 @@ public class Coordinates {
      */
     private final double latitude;
 
-    public Coordinates(double longitude, double latitude) {
-        this.longitude = longitude;
+    public Coordinates(double latitude, double longitude) {
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public double getLongitude() {

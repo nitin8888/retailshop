@@ -1,6 +1,8 @@
 package com.hcl.retailshop.model;
 
 /**
+ * The class store Shop details.
+ *
  * Created by Nitin Shreyakar.
  */
 public class Shop {

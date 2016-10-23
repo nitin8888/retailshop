@@ -1,11 +1,10 @@
 package com.hcl.retailshop.api;
 
+import com.hcl.retailshop.model.Coordinates;
+import com.hcl.retailshop.model.Shop;
 import com.hcl.retailshop.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * The Shop Endpoint for posting and getting shop.
@@ -21,5 +20,13 @@ public class ShopEndpoint {
     @RequestMapping(value = "/shop", method = RequestMethod.POST)
     public void pushShop(@RequestBody String body) throws Exception {
         shopService.processShop(body);
+    }
+
+    @RequestMapping(value = "/closestShop", method = RequestMethod.GET)
+    public Shop getClosestShop(@RequestParam(value = "latitude") double latitude,
+                               @RequestParam(value = "longitude") double longitude) throws Exception {
+        Coordinates coordinates = new Coordinates(latitude, longitude);
+        Shop closestShop = shopService.getClosestShop(coordinates);
+        return closestShop;
     }
 }

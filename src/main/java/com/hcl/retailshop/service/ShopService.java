@@ -15,7 +15,7 @@ public interface ShopService {
      * @param coordinates the coordinates used for querying.
      * @return the closest shop
      */
-    Shop getClosestShop(Coordinates coordinates);
+    Shop getClosestShop(Coordinates coordinates) throws Exception;
 
     /**
      * Process shop by parsing the json file.

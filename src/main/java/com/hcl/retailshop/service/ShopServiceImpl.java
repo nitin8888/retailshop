@@ -6,8 +6,8 @@ import com.hcl.retailshop.model.Shop;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The shop service to add shop and get closest shop.
@@ -17,26 +17,34 @@ import java.util.Set;
 @Service
 public class ShopServiceImpl implements ShopService {
 
-    private static final Set<Shop> SHOPS = new HashSet<>();
+    private static final List<Shop> SHOPS = new ArrayList<>();
 
     @Autowired
-    private CoordinateService coordinateService;
+    private GeocodeService geocodeService;
 
     @Override
-    public Shop getClosestShop(Coordinates coordinates) {
-        for (Shop shop: SHOPS) {
-            if (shop.getCoordinates().equals(coordinates)) {
-                return shop;
+    public Shop getClosestShop(Coordinates customerCoordinates) throws Exception {
+        if (!SHOPS.isEmpty()) {
+            List<Coordinates> shopCoordinates = new ArrayList<>(SHOPS.size());
+            for (Shop shop: SHOPS) {
+                shopCoordinates.add(shop.getCoordinates());
             }
+            int closestIndex = geocodeService.getClosestCoordinates(customerCoordinates, shopCoordinates);
+            return SHOPS.get(closestIndex);
+        } else {
+            return null;
         }
-        return null;
     }
 
     @Override
     public void processShop(String shopJson) throws Exception {
         Shop shop = new ObjectMapper().readValue(shopJson, Shop.class);
-        Coordinates coordinates = coordinateService.getCoordinates(shop.getAddressNumber(), shop.getPostCode());
+        Coordinates coordinates = geocodeService.getCoordinates(shop.getAddressNumber(), shop.getPostCode());
         shop.setCoordinates(coordinates);
-        SHOPS.add(shop);
+
+        // Avoid duplicate shops to be added
+        if (!SHOPS.contains(shop)) {
+            SHOPS.add(shop);
+        }
     }
 }
